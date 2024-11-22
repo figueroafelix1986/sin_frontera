@@ -5,7 +5,7 @@ class Lista_combobox:
             "Sim": 1,
             "Não": 0
         }
-        
+     #   
         self.deficiencia = {
             "Não tem": 1,
             "Visual": 2,
