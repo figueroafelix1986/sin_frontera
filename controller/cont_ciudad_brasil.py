@@ -18,4 +18,5 @@ class Controller_Ciudad_Brasil:
     
     def listar_ciudadbrasil(self):
         return self.session.query(Ciudad_Brasil).order_by(Ciudad_Brasil.nombre).all()
+    #
     
