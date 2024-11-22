@@ -821,28 +821,35 @@ class PersonaView(ctk.CTkToplevel):
         email = self.email.get()
         datos_h = self.datos_hijos  # Datos de los hijos
         numro_identi = self.entry_ni.get()
-        genero = self.controller_genero.get_genero(self.selcted_genero_id)
+        valor_genero=self.genero_combobox.get()
+        genero = self.controller_genero.get_genero(valor_genero)
         telefono = self.entry_telefono.get()
         tipo_solicitud = self.tiposolicitud_combobox.get()
-        raza = self.controller_raza.get_raza(self.selcted_raza_id)
-        benef_gob = self.selected_ayugob_id
+        valor_raza=self.raza_combobox.get()
+        raza = self.controller_raza.get_raza(valor_raza)
+        valor_benf_gob=self.ayuda_gob_combobox.get()
+        benef_gob = self.contr_list_comb.opciones[valor_benf_gob]
+        
         pais_ciudad = self.pais_ciudad_combobox.get()
         ciudad_brasil = self.ciudad_brasil_combobox.get()
-        deficiencia = self.selected_deficiencia_nomb
-        activ_econo = self.selected_actiecono_nomb
-        estado_civil = self.selected_estcivil_nomb
+        deficiencia = self.deficiencia_combobox.get()
+        activ_econo = self.acti_econo_combobox.get()
+        estado_civil = self.estado_civil_combobox.get()
         profec_oficio = self.profecion_ofic_combobox.get()
         uf_residen = self.uf_reside_combobox.get()
-        renta_mensual = self.selected_rentames_nomb
-        etnia = self.selected_etnia_nomb
-        situacion_laboral = self.selected_situlaboral_nomb
-        status_migrato = self.selected_statumigra_nomb
-        lgbt = self.selected_lgbt_id
-        nino_menores = self.selected_ninomenor_nomb
-        cartera_trabajo=self.selected_cartera_id
-        
-        pais = self.controller_pais.get_pais(self.selected_value_id)
-        nivelescolar = self.controller_nivelescolar.get_nivelescolar(self.selcted_nivel_id)
+        renta_mensual = self.renta_mensual_combobox.get()
+        etnia = self.etnia_combobox.get()
+        situacion_laboral = self.situa_laboral_combobox.get()
+        status_migrato = self.status_migra_combobox.get()
+        valor_lgbt=self.lgbt_combobox.get()
+        lgbt =self.contr_list_comb.opciones[valor_lgbt]
+        nino_menores = self.ninos_menor_combobox.get()
+        valor_cartera=self.cartera_trab_combobox.get()
+        cartera_trabajo=self.contr_list_comb.opciones[valor_cartera]
+        valor_pais=self.country_combobox.get()
+        pais = self.controller_pais.get_pais(valor_pais)
+        valor_nivelescolar=self.nivel_esco_combobox.get()
+        nivelescolar = self.controller_nivelescolar.get_nivelescolar(valor_nivelescolar)
             
             # Procesar fechas
         fnacimiento = self.entry_fecha.get()

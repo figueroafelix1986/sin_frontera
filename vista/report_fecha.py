@@ -6,6 +6,7 @@ from .list_combo import Lista_combobox
 from openpyxl import load_workbook
 from openpyxl.utils import get_column_letter
 from openpyxl.styles import Alignment
+import tkinter.messagebox as messagebox
 import pandas as pd
 from tkinter import filedialog
 
@@ -191,3 +192,5 @@ class ReporteFecha(ctk.CTkToplevel):
             # Guardar los cambios en el archivo
             wb.save(file_path)
             wb.close()
+            messagebox.showinfo("Guardado",f"Dato guardado con exito en {file_path}")
+            
