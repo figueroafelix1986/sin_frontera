@@ -30,9 +30,19 @@ class PersonaView(ctk.CTkToplevel):
         self.datos_hijos = []
         self.cantidad_regi=0 
         self.cantidadpersonas=""
-        self.title("Agregar Persona")  
+        self.title("Agregar Persona") 
+       
+        # Configura el protocolo de cierre para que llame a la función de la ventana principal
+       
+        self.protocol("WM_DELETE_WINDOW", lambda: self.cerrar_ventana(controller_person))
+
+
+    
+     
+
         #self.attributes('-fullscreen', True) 
         # Para salir del modo de pantalla completa, puedes usar la tecla Esc
+
     
     
        # Obtener la lista de países
@@ -742,7 +752,13 @@ class PersonaView(ctk.CTkToplevel):
         # Crear una nueva ventana
         nueva_ventana = ctk.CTkToplevel(self)
         nueva_ventana.title("Agregar Hijo")
-
+         # Configura el protocolo de cierre
+        nueva_ventana.protocol("WM_DELETE_WINDOW", lambda: self.volver_a_inicio(nueva_ventana))
+        
+        # Oculta la ventana principal
+        self.withdraw()
+        
+        
         # Frame superior para ingresar datos
         label_frame_supe = ctk.CTkFrame(nueva_ventana, corner_radius=10, border_width=5)
         label_frame_supe.pack(side="top", expand=False, fill="x", padx=10, pady=10)
@@ -778,6 +794,8 @@ class PersonaView(ctk.CTkToplevel):
         self.tree_hijo.pack(fill="both", expand=True)
         
         self.cargar_datos_en_treeview()
+        
+    
 
 
 
@@ -1120,6 +1138,7 @@ class PersonaView(ctk.CTkToplevel):
         Tooltip(self.entry_ni,"CPF o numero identificativo")
         Tooltip(self.entry_telefono,"Numero de telefono")
         Tooltip(self.email,"Correo o Email")
+        Tooltip(self.entry_direccion,"Direccion")
         
         
         
@@ -1167,3 +1186,19 @@ class PersonaView(ctk.CTkToplevel):
         else:
             self.pais_ciudad_combobox.configure(values=["No hay registros"])
             self.pais_ciudad_combobox.set("No hay registros")
+            
+    def cerrar_ventana(self, main_app):
+        # Cierra la ventana
+        self.destroy()
+        # Muestra la ventana principal de nuevo
+        main_app.deiconify()
+        
+    def volver_a_inicio(self, nueva_ventana):
+        try:
+        # Verifica si la ventana nueva sigue existiendo
+            if nueva_ventana.winfo_exists():
+                nueva_ventana.destroy()  # Cierra la ventana nueva
+            # Muestra la ventana principal de nuevo
+            self.deiconify()
+        except Exception as e:
+            print(f"Error al volver a inicio: {e}")

@@ -15,6 +15,8 @@ class ReporteFecha(ctk.CTkToplevel):
     def __init__(self,controller_registro,controller_hijosmenores):
         super().__init__()
         self.contr_list_comb = Lista_combobox()
+        
+        self.protocol("WM_DELETE_WINDOW", lambda: self.cerrar_ventana(self))
       
         self.controller_registro=controller_registro
         self.controller_hijosmenores=controller_hijosmenores
@@ -193,4 +195,10 @@ class ReporteFecha(ctk.CTkToplevel):
             wb.save(file_path)
             wb.close()
             messagebox.showinfo("Guardado",f"Dato guardado con exito en {file_path}")
+            
+    def cerrar_ventana(self, main_app):
+        # Cierra la ventana
+        self.destroy()
+        # Muestra la ventana principal de nuevo
+        main_app.deiconify()
             

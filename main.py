@@ -61,7 +61,7 @@ class MainApp(ctk.CTk):
 
         # Gestión
         gestion_menu = tk.Menu(menu_bar, tearoff=0)
-        gestion_menu.add_command(label="Personas", command=self.open_persona_view)
+        gestion_menu.add_command(label="Agregar Registro", command=self.open_persona_view)
         #gestion_menu.add_command(label="Reporte", command=self.open_report_fecha)
         menu_bar.add_cascade(label="Gestión", menu=gestion_menu)
         
@@ -75,6 +75,9 @@ class MainApp(ctk.CTk):
     
     def open_report_fecha(self):
         report_fecha = ReporteFecha(self.controller_registro,self.controller_hijosmenores)
+        
+        self.withdraw()
+        report_fecha.protocol("WM_DELETE_WINDOW", lambda: self.volver_a_inicio(report_fecha))
     
     def open_pais_view(self):
         pais_view = PaisView(self.controller_pais)
@@ -86,6 +89,9 @@ class MainApp(ctk.CTk):
                                    self.controller_ciudadbrasil,self.controller_profeoficio,
                                    self.controller_paisciudad,self.controller_hijosmenores,
                                    self.ciudadbrasil_list,self.country_list)
+        self.withdraw()
+        persona_view.protocol("WM_DELETE_WINDOW", lambda: self.volver_a_inicio(persona_view))
+        
     def center_window(self):
         # Obtener el tamaño de la pantalla
         screen_width = self.winfo_screenwidth()
@@ -101,6 +107,12 @@ class MainApp(ctk.CTk):
 
         # Establecer la posición de la ventana
         self.geometry(f"{window_width}x{window_height}+{x}+{y}")
+        
+    def volver_a_inicio(self, persona_view):
+        # Cierra la ventana PersonaView
+        persona_view.destroy()
+        # Muestra la ventana principal de nuevo
+        self.deiconify()
         
 if __name__ == "__main__":
     ctk.set_appearance_mode("dark")  # Modo de apariencia: "light", "dark", "system"

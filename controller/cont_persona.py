@@ -163,7 +163,7 @@ class Controller_Perona:
         personas.nombre_apellido=nuevo_nombre.title()
         personas.genero_id=genero_id
         personas.raza_id=raza_id
-        personas.ciudad_person=pais_ciudad
+        personas.ciudad_person=pais_ciudad.strip().upper()
         personas.pais_id=pais_id
         personas.nivel_escol_id=nivel_escolar_id
         personas.fecha_nacimiento=fecha_nacimiento
